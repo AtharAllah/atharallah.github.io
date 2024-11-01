@@ -15,9 +15,19 @@
                 // إنشاء AudioContext
                 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 await audioContext.resume(); // محاولة استئناف AudioContext
+                
+                // محاولة تشغيل صوت فاضي
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'sine'; // نوع الصوت
+                oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // تردد الصوت
+                oscillator.connect(audioContext.destination); // ربط بالصوت
+                oscillator.start(); // تشغيل الصوت
+                oscillator.stop(audioContext.currentTime + 1); // التوقف بعد 1 ثانية
+                
                 alert("تم تفعيل صلاحية الصوت!"); // تأكيد للمستخدم
             } catch (error) {
                 console.error('فشل في تفعيل الصوت:', error);
+                alert("فشل في تفعيل صلاحية الصوت: " + error.message);
             }
         };
     </script>
