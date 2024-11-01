@@ -16,7 +16,7 @@
                 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 await audioContext.resume(); // محاولة استئناف AudioContext
                 
-                // محاولة تشغيل صوت فاضي
+                // تشغيل صوت بسيط
                 const oscillator = audioContext.createOscillator();
                 oscillator.type = 'sine'; // نوع الصوت
                 oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // تردد الصوت
